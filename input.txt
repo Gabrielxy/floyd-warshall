@@ -1,0 +1,13 @@
+S
+5
+Aa
+Bb
+Cc
+Dd
+Ee
+Aa, Bb, 4
+Bb, Dd, 20
+Dd, Cc, 28
+Aa, Ee, 8
+Bb, Ee, 18
+Cc, Aa, 2
