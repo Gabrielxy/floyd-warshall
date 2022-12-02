@@ -66,12 +66,30 @@ class Main {
             }
          }
       }
-      System.out.printf("Menor caminho de %d —> %d é: %s\n", start, dest, route);
+      System.out.printf("\nMenor caminho de %d —> %d é: %s\n", start, dest, route);
+   }
+
+   static void printMatrix(int cost[][], int V) {
+      System.out.println("\nMatrix resultante com o peso das distâncias entre os vértices:");
+      for (int i=0; i<V; ++i)
+      {
+         for (int j=0; j<V; ++j)
+         {
+            if (cost[i][j] == Integer.MAX_VALUE)
+               System.out.print("INF ");
+            else
+               System.out.print(cost[i][j]+"   ");
+         }
+         System.out.println();
+      }
    }
 
    // Algoritmo de Floyd-Warshall
-   public static void floydWarshall(int[][] adjMatrix)
+   public static void floydWarshall(int[][] adjMatrix, int start, int dest)
    {
+      int s = start;
+      int d = dest;
+
       if (adjMatrix ==null || adjMatrix.length == 0) {
          return;
       }
@@ -99,7 +117,7 @@ class Main {
          }
       }
 
-      // Rodando o algoritmo
+      // Floyd-Warshall
       for (int k = 0; k < n; k++)
       {
          for (int v = 0; v < n; v++)
@@ -124,8 +142,10 @@ class Main {
          }
       }
 
-      // Printando solução -> caminho, custo, vertice origem, vertice destino
-      printSolution(path, cost, n, 4, 2);
+      printMatrix(cost, n);
+
+      // Printando solução
+      printSolution(path, cost, n, s, d);
    }
 
    public static void main(String[] args) {
@@ -170,8 +190,8 @@ class Main {
             }
          }
 
-         // Run Floyd–Warshall algorithm
-         floydWarshall(adjMatrix);
+         // Rodando algoritmo (passar Origem e Destino).
+         floydWarshall(adjMatrix, 4, 2);
       }
    }
 }
